@@ -97,3 +97,29 @@ app.delete("/books/:id", (req, res) => {
         res.status(500).json({ error: "Ocurrió un error al eliminar el libro" });
     }
 });
+
+app.post("/users", (req, res) => {
+    const data = readData();
+    const body = req.body;
+
+    const userExists = data.users.some((el) => el.indentificacion === body.indentificacion);
+    
+    if (userExists) {
+        return res.status(400).json({ message: "El usuario con esta identificación ya existe." });
+    }
+
+    const newUser = {
+        id: data.users.length + 1,
+        ...body,
+    };
+
+    data.users.push(newUser);
+    writeData(data);
+    res.status(201).json(newUser);
+});
+
+app.get("/users", (req, res) => {
+    const data = readData();
+    res.json(data.users);
+})
+
