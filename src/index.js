@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 app.use("/api/books", require("./routes/books.routes"));
 app.use("/api/users", require("./routes/users.routes"));
 app.use("/api/authors", require("./routes/authors.routes"));
+app.use("/api/loans", require("./routes/loans.routes"));
 
 app.on("error", (error) => {
     console.error(error)
