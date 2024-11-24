@@ -8,9 +8,10 @@ app.get("/", (req, res) => {
     res.send("Bienvenido a nuestra API")
 });
 
-// Endpoints (constructor middleware)
+// Endpoints (middlewares)
 app.use("/api/books", require("./routes/books.routes"));
 app.use("/api/users", require("./routes/users.routes"));
+app.use("/api/authors", require("./routes/authors.routes"));
 
 app.on("error", (error) => {
     console.error(error)
